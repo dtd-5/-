@@ -1,0 +1,37 @@
+/* pages/bodydata/bodydata.wxss */
+.echarts {
+    width: 100vw;
+    height: 50vh;
+}
+
+ec-canvas {
+    width: 100%;
+    height: 100%;
+}
+text{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.statusBox{
+    width: 100%;
+    display: flex;
+    margin-top: 8vh;
+    margin-bottom: 3vh;
+    border-radius: 5%;
+    padding:40rpx,10rpx;
+    /* background-color: #eee; */
+    box-shadow:0px 0px 18px #ecbccc;/*设置块阴影  水平位移   垂直位移 	模糊半径 */
+}
+.statusCeil{
+    width: 50%;
+    text-align: center;
+}
+.button {
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #000000;
+    margin: auto;
+    margin-left: 20rpx;
+    width: 50%;
+}

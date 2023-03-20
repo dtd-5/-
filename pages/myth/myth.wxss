@@ -1,0 +1,84 @@
+/* pages/myth/myth.wxss */
+.second {
+    width: 90%;
+    height: 100rpx;
+    margin-top: 30rpx;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    /*Flex是Flexible Box的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性*/
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+}
+.button {
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #000000;
+    margin: auto;
+    margin-left: 20rpx;
+    width: 60%;
+}
+.vanImage{
+    width:100%;height:8rem;
+    transition: all 1s;
+}
+.vanImage1{
+    height: 50vh;
+    width: 100%;
+    transition: all 1s ;
+}
+.inputs {
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #000000;
+    margin: auto;
+    margin-left: 20rpx;
+    width: 100%;
+}
+.mythcontainer{
+    padding: 5px 20px;
+    display: flex;
+    justify-content:space-between;
+    border-radius: 16px 16px 0 0;
+    background-color: #fff;
+    transform: translateY(-1rem);
+}
+.name{
+    flex:1;
+    text-align: center;
+    align-self: center;
+}
+.echarts{
+    width: 100%;
+    height: 25vh;
+}
+ec-canvas {
+    width: 100%;
+    height: 100%;
+  }
+text{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.weui-cell__hd image {
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .weui-cells::after{
+    content: none;
+    border-bottom: none;
+  }
+  
+  .weui-cells::before{
+    border-top: none;
+  }
+  .first{
+      width: 100%;
+  }
+  

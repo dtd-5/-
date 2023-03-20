@@ -1,0 +1,34 @@
+<!--pages/bodydata/bodydata.wxml-->
+<view style="width: 100%;height:fit-content;display: flex;flex-wrap: wrap;" bindtap="detaildata">
+    <view class="echarts">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ac }}"></ec-canvas>
+        <text>体重</text>
+    </view>
+    <view class="echarts">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ bc }}"></ec-canvas>
+        <text>BMI</text>
+    </view>
+    <view class="echarts">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ cc }}"></ec-canvas>
+        <text>体脂率</text>
+    </view>
+    <view class="statusBox">
+        <view class="statusCeil">
+            <view>
+                时间
+            </view>
+            <view wx:for="{{statusTime}}">
+                {{item}}
+            </view>
+        </view>
+        <view class="statusCeil">
+            <view>
+                状态
+            </view>
+            <view wx:for="{{statusData}}">
+                {{item}}
+            </view>
+        </view>
+    </view>
+    <text>身体状态</text>
+</view>

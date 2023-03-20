@@ -1,0 +1,29 @@
+<view class="background">
+    <van-dialog use-slot title="忘记密码" show="{{ show }}" show-cancel-button bind:confirm='forgetPassword'>
+        <view class="second">
+            <input id='account' placeholder="邮箱" placeholder-class="plas" type="text" class="inputs" model:value="{{email}}" />
+            <button class="button" bindtap="onGetCode">{{trip}}</button>
+        </view>
+        <view class="second">
+            <input id='account' placeholder="验证码" placeholder-class="plas" type="text" class="inputs" model:value="{{code}}"/>
+        </view>
+        <view class="second">
+            <input id='pwd' placeholder="重置密码" placeholder-class="plas" type="password" class="inputs" model:value="{{newPwd}}" />
+        </view>
+    </van-dialog>
+
+    <view class="first">
+        <input id='account' placeholder="用户名" placeholder-class="plas" type="text" class="inputs" model:value="{{account}}" />
+    </view>
+    <view class="second">
+        <input id='pwd' placeholder="登录密码" placeholder-class="plas" type="{{type}}"  class="inputs" model:value="{{password}}"  />
+        <text bindtap="showpwd">👁‍🗨</text>
+    </view>
+    <view id='btn' class="click" bindtap='signin'>登录</view>
+    <view class="cha">
+        <text class="no" bindtap="regist">还没有账号？点我注册</text>
+    </view>
+    <view class="cha">
+        <text class="no" bindtap="Show">忘记密码?</text>
+    </view>
+</view>

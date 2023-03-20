@@ -1,0 +1,6 @@
+<!--pages/textdetails/textdetails.wxml-->
+<view>
+    <view style="width: 100%;height: fit-content;">
+        <towxml nodes="{{article}}" />
+    </view>
+</view>

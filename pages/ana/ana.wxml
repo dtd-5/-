@@ -1,0 +1,69 @@
+<!--pages/ana/ana.wxml-->
+<view>
+    <view class="calendar">
+        <text decode='true' bindtap="before">
+            &lt;
+        </text>
+        <text bindtap="show">
+            {{year}}-{{month}}-{{day}}
+        </text>
+        <text bindtap="last">
+            >
+        </text>
+    </view>
+    <van-calendar max-date='{{maxDate}}' default-date='{{defaultDate}}' show-title='false' min-date='{{minDate}}' show="{{ show }}" round="true" position="top" bind:confirm='confrim' bind:select='select' />
+    <view  wx:if="{{Project!==0}}">
+        <view class="statusBox" style="padding:5px;box-shadow:0 0 18px #94A7A1">
+            当前给您的建议：{{advise}}
+        </view>
+        <view  bindlongtap="delete" data-id="{{item.id}}" class="statusBox" wx:for="{{Data}}">
+        <view style="position: absolute;top: -1.5rem;">
+            {{item.trainType=='RUNNING'?'跑步':(item.trainType=='ROPE_SKIPPING'?'跳绳':'乒乓球')}}
+        </view>
+            <view class="statusCeil" >
+                <view>
+                    训练时间（min）
+                </view>
+                <view>
+                    平均心率
+                </view>
+                <view wx:if="{{item.trainType=='RUNNING'}}">
+                    跑步距离（米）
+                </view>
+                <view wx:if="{{item.trainType=='ROPE_SKIPPING'}}">
+                    跳绳总次数（个）
+                </view>
+                <view>
+                    卡路里消耗
+                </view>
+            </view>
+            <view class="statusCeil">
+                <view wx:for="{{item.data}}" wx:for-item="item1">
+                    {{item1}}
+                </view>
+            </view>
+        </view>
+        <image class="image" src="../../assets/添加.png" bindtap="adddata" />
+
+    </view>
+
+    <view wx:else class='toast'>
+        <text style="align-self: center;">当天还没有数据!!</text>
+        <view style="background:#eee;border-radius:30px;box-shadow:0 0 12px #eee" bindtap="adddata">马上手动添加一条</view>
+    </view>
+
+    <van-dialog use-slot title="训练数据" show="{{ showadd }}" show-cancel-button bind:confirm="putdata">
+        <input placeholder="训练时间（min）" type="text" model:value='{{trainTime}}' />
+        <input placeholder="训练时平均心率（BPM）" model:value='{{avgHeartRate}}' type="text" />
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height: 3rem;line-height: 3rem;">
+                当前选择：{{array[index]}}
+            </view>
+        </picker>
+        <input wx:if="{{index==0}}" model:value='{{runDistance}}' placeholder="跑步距离（米）" type="text" />
+        <input wx:if="{{index==1}}" model:value="{{skipNum}}" placeholder="跳绳总次数（个）" type="text" />
+        <input placeholder="卡路里消耗（卡）" model:value='{{calorieBrun}}' type="text" />
+    </van-dialog>
+    <van-dialog title="是否删除本条数据" show="{{ deleteshow }}" show-cancel-button bind:confirm="deletedata">
+    </van-dialog>
+</view>

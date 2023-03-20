@@ -1,0 +1,62 @@
+{
+    "pages": [
+        "pages/login/login",
+        "pages/myth/myth",
+        "pages/textdetails/textdetails",
+        "pages/bodydata/bodydata",
+        "pages/enroll/enroll",
+        "pages/bar/index",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/ana/ana",
+        "pages/user/user",
+        "pages/dataChan/dataChan"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "乒乓球运动数据分析系统",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "资讯",
+                "iconPath": "/assets/icon/主页.png",
+                "selectedIconPath": "/assets/icon/zhuye.png"
+            },
+            {
+                "pagePath": "pages/ana/ana",
+                "text": "分析",
+                "iconPath": "/assets/icon/fenxi.png",
+                "selectedIconPath": "/assets/icon/fenxiselect.png"
+            },
+            {
+                "pagePath": "pages/myth/myth",
+                "text": "我的",
+                "iconPath": "/assets/icon/wode1.png",
+                "selectedIconPath": "/assets/icon/wode2.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "resolveAlias": {
+        "@/*": "/*"
+    },
+    "usingComponents": {
+        "towxml":"/towxml/towxml",
+        "van-button": "@vant/weapp/button/index",
+        "van-tabbar": "@vant/weapp/tabbar/index",
+        "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+        "van-row": "@vant/weapp/row/index",
+        "van-col": "@vant/weapp/col/index",
+        "van-grid": "@vant/weapp/grid/index",
+        "van-grid-item": "@vant/weapp/grid-item/index",
+        "van-image": "@vant/weapp/image/index",
+        "van-dialog": "@vant/weapp/dialog/index",
+        "van-cell": "@vant/weapp/cell/index",
+        "van-cell-group": "@vant/weapp/cell-group/index",
+        "van-overlay": "@vant/weapp/overlay/index"
+    }
+}

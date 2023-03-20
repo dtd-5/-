@@ -1,0 +1,9 @@
+<view style="text-align: center;">
+    所有记录数据
+</view>
+<view class="statusBox">
+    <view class="box" wx:for="{{bodydata}}" wx:for-item='itemm'>
+        {{itemm.createTime}}
+        <button bindtap="deldata" class="delete" data-bid="{{itemm.id}}">⛔</button>
+    </view>
+</view>

@@ -1,0 +1,19 @@
+.statusBox{
+    width: 100%;
+    margin-top: 8vh;
+    margin-bottom: 3vh;
+    position: relative;
+}
+.box{
+    margin: 10px 0;
+}
+.delete{
+    display: inline;
+    border: 0;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0;
+    position: absolute;
+    right: 10px;
+}

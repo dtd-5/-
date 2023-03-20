@@ -1,0 +1,46 @@
+/* pages/ana/ana.wxss */
+.calendar{
+    display: flex;
+    justify-content: space-around;
+}
+input,picker{
+    margin-left:10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-left:1rem ;
+    /* border:1px solid #aaa */
+    
+    height: 3rem;
+}
+input{
+    background-color: #eee;
+}
+.statusBox{
+    position: relative;
+    width: 90%;
+    margin:0 auto;
+    display: flex;
+    margin-top: 8vh;
+    margin-bottom: 3vh;
+    padding:40rpx,10rpx;
+    /* background-color: #eee; */
+    box-shadow:0px 0px 18px #aaa;/*设置块阴影  水平位移   垂直位移 	模糊半径 */
+
+}
+.statusCeil{
+    width: 50%;
+    text-align: center;
+}
+.toast{
+    height: 30vh;
+    text-align: center;
+    line-height: 30vh;
+}
+
+.image{
+    width:3rem;
+    height: 3rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
