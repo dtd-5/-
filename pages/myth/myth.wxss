@@ -1,4 +1,19 @@
 /* pages/myth/myth.wxss */
+.statusBox{
+    position: relative;
+    width: 90%;
+    margin:0 auto;
+    display: flex;
+    margin-bottom: 3vh;
+    padding:40rpx,10rpx;
+    /* background-color: #eee; */
+    box-shadow:0px 0px 18px #aaa;/*设置块阴影  水平位移   垂直位移 	模糊半径 */
+
+}
+.statusCeil{
+    width: 50%;
+    text-align: center;
+}
 .second {
     width: 90%;
     height: 100rpx;

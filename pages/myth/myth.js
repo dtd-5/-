@@ -8,6 +8,9 @@ import {
 
 Page({
     data: {
+        MAXMINdata:'',
+        imgtype:'AVATAR',
+        wallimg:'',
         isTap:true,
         vanImage: 'vanImage',
         overlayshow: false,
@@ -19,13 +22,13 @@ Page({
         oldPwd: '',
         newPwd: '',
         secretCode: '',
-        oldemail: '2586784220@qq.com',
+        oldemail: wx.getStorageSync('user').email,
         code: '',
-        newemail: '2586784220@qq.com',
+        newemail: '',
         showEmail: false,
-        age: '',
-        nickName: '',
-        sex: '',
+        age: wx.getStorageSync('user').age,
+        nickName: wx.getStorageSync('user').nickName,
+        sex: wx.getStorageSync('user').sex==1?'男':'女',
         type: 'Info',
         trip: '获取验证码',
         show: false,
@@ -54,54 +57,48 @@ Page({
             imagedisplay: 'none'
         })
     },
+    changewallimg(){
+        this.setData({imgtype:'PHOTO'})
+        this.changeimage1()
+    },
     changeimage() {
         this.setData({
-            ifchangeimage: true
+            ifchangeimage: true,
+            imgtype:'AVATAR'
         })
     },
     changeimage1() {
         var that = this;
-        wx.chooseMedia({
-            count: 9,
-            mediaType: ['image','video'],
-            sourceType: ['album', 'camera'],
-            maxDuration: 30,
-            camera: 'back',
-            success(res) {
-              console.log(res.tempFiles.tempFilePath)
-              console.log(res.tempFiles.size)
+        wx.chooseImage({ //从本地相册选择图片或使用相机拍照
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                let tempFilePaths = res.tempFilePaths
+                wx.uploadFile({
+                    url: `http://10.23.129.64:9999/file/upload`,
+                    filePath: tempFilePaths[0],
+                    name: 'file',
+                    formData: {
+                        type: that.data.imgtype
+                    },
+                    header: {
+                        token: wx.getStorageSync("token")
+                    },
+                    success: function (res) {
+                        get('/user-info/data',{},{token:wx.getStorageSync('token')}).then(res=>{
+                            wx.setStorageSync('user', res.data)
+                            that.setData({userInfo:wx.getStorageSync('user')})
+                        })
+                        get('/file/photo/wall',{},{token:wx.getStorageSync('token')}).then(res=>that.setData({wallimg:res.data}))
+                    },
+                    fail(res) {
+                        console.log(res);
+                    }
+                })
             }
-          })
-        // wx.chooseImage({ //从本地相册选择图片或使用相机拍照
-        //     count: 1, // 默认9
-        //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-        //     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-        //     success: function (res) {
-        //         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        //         let tempFilePaths = res.tempFilePaths
-        //         console.log(tempFilePaths);
-        //         wx.uploadFile({
-        //             url: `http://10.23.129.64:9999/file/upload`,
-        //             filePath: tempFilePaths[0],
-        //             name: 'file',
-        //             formData: {
-        //                 type: 'AVATAR'
-        //             },
-        //             header: {
-        //                 token: wx.getStorageSync("token")
-        //             },
-        //             success: function (res) {
-        //                 console.log(res)
-        //                 that.setData({
-        //                     src: tempFilePaths[0]
-        //                 }) //上传成功后立刻更换前端展示的头像
-        //             },
-        //             fail(res) {
-        //                 console.log(res);
-        //             }
-        //         })
-        //     }
-        // })
+        })
     },
 
     closeInfo() {
@@ -151,7 +148,7 @@ Page({
             code: this.data.code,
             email: this.data.oldemail
         }).then((res) => {
-            console.log(111);
+            this.setData({code:''})
             post('/user/modify/email', {
                 secretCode: res.data,
                 email: this.data.newemail
@@ -236,6 +233,16 @@ Page({
     onLoad() {
         this.setData({
             userInfo:wx.getStorageSync('user')
+        })
+        get('/file/photo/wall',{},{token:wx.getStorageSync('token')}).then(res=>{
+            this.setData({wallimg:res.data})
+        })
+        get('/user-info/body/peak',{},{token:wx.getStorageSync('token')}).then(res=>{
+            let data=[]
+            for(let x in res.data){
+                data.push(res.data[x].split('-'))
+            }
+            this.setData({MAXMINdata:data})
         })
     },
     onGetCode(e) {

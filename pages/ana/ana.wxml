@@ -11,7 +11,7 @@
             >
         </text>
     </view>
-    <van-calendar max-date='{{maxDate}}' default-date='{{defaultDate}}' show-title='false' min-date='{{minDate}}' show="{{ show }}" round="true" position="top" bind:confirm='confrim' bind:select='select' />
+    <van-calendar  max-date='{{maxDate}}' default-date='{{defaultDate}}' show-title='false' min-date='{{minDate}}' show="{{ show }}" round="true" position="top" bind:confirm='confrim' bind:select='select' />
     <view  wx:if="{{Project!==0}}">
         <view class="statusBox" style="padding:5px;box-shadow:0 0 18px #94A7A1">
             当前给您的建议：{{advise}}

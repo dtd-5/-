@@ -108,7 +108,11 @@ Page({
         }
         // 判断是否是闰年，用于计算二月的天数
         let isLeapYear = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
-
+        if(month==12&&day==31){
+            this.setData({year:this.data.year+1,day:1,month:1})
+            this.confrim()
+            return
+        }
         if (day < 28 || (day < 28 && month != 2) || (day < 29 && month == 2 && isLeapYear) || (day < 30 && [4, 6, 9, 11].includes(month)) || (day < 31 && [1, 3, 5, 7, 8, 10, 12].includes(month))) {
             // 当前月份的天数不超过当月天数时，直接将天数加1
             this.setData({
@@ -151,6 +155,7 @@ Page({
         }else{type='TABLE_TENNIS'}
         if(type=='RUNNING'){
             post('/data/train/add', {
+                "date":`${this.data.year}-${this.data.month}-${this.data.day} 00:00:00`,
                 "trainTime": this.data.trainTime,
                 "avgHeartRate": this.data.avgHeartRate,
                 "runDistance": this.data.runDistance,
@@ -163,6 +168,7 @@ Page({
             })
         }else if(type=='ROPE_SKIPPING'){
             post('/data/train/add', {
+                "date":`${this.data.year}-${this.data.month}-${this.data.day} 00:00:00`,
                 "trainTime": this.data.trainTime,
                 "avgHeartRate": this.data.avgHeartRate,
                 "skipNum": this.data.skipNum,
@@ -175,6 +181,7 @@ Page({
             })
         }else {
             post('/data/train/add', {
+                "date":`${this.data.year}-${this.data.month}-${this.data.day} 00:00:00`,
                 "trainTime": this.data.trainTime,
                 "avgHeartRate": this.data.avgHeartRate,
                 "calorieBrun": this.data.calorieBrun,
@@ -224,7 +231,9 @@ Page({
                 Data: ans
             })
             if (res.data.length !== 0) {
-                get('/analyse/advise', {}, {
+                get('/analyse/advise', {
+                    "date":`${this.data.year}-${this.data.month}-${this.data.day} 00:00:00`
+                }, {
                     token: wx.getStorageSync('token')
                 }).then(res => {
                     this.setData({

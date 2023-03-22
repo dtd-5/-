@@ -9,7 +9,6 @@ wx.getStorage({
 })
 const request = (url, options, header = {}) => {
     // 当发起请求的时候，界面出现“数据加载中...”的Loading界面
-    console.log("调用了request");
     wx.showLoading({
         title: '数据加载中...',
         mask: true
@@ -25,11 +24,8 @@ const request = (url, options, header = {}) => {
             }), //header中可以添加token值等
             success(request) { //监听成功后的操作
                 if (request.statusCode === 200) {
-                    console.log("拿到数据咯");
-                    console.log(request.data);
                     resolve(request.data)
                 } else {
-                    console.log('状态码不为200');
                     wx.showToast({
                       title: 'ERROR!',
                       icon:'error',
@@ -39,11 +35,9 @@ const request = (url, options, header = {}) => {
                 }
             },
             fail(error) { //返回失败也同样传入reject()方法
-                console.log("调用了fail");
-                console.log(error);
                 reject(error)
                 wx.showToast({
-                    title: 'ERROR!',
+                    title: '错误!',
                     icon:'error'
                   })
             },

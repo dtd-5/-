@@ -19,8 +19,12 @@ Page({
   },
   onLoad() {
     get('/home/information',{currentPage:this.data.currentPage,pageSize:10},{token:wx.getStorageSync('token')}).then(res=>{
+        let records=[];
+        for(let x of res.data.records){
+            records.push(x)
+        }
         this.setData({
-            data:[...res.data.records,...this.data.data]
+            data:[...records,...this.data.data]
         })
     })
   },

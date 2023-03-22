@@ -1,5 +1,7 @@
 <!--pages/myth/myth.wxml-->
 <view>
+    <input type="file" name="添加" id="" />
+
     <van-dialog use-slot title="个人信息" show="{{ show }}" show-cancel-button bind:confirm="changeInfo" zIndex='1000'>
         <view wx:if="{{type=='Info'}}">
             <view class="second">
@@ -15,19 +17,58 @@
     </van-dialog>
 
     <view class="tripimg" style="background-color: black;">
-        <image mode="aspectFit" class="{{vanImage}}" src="https://img.yzcdn.cn/vant/cat.jpeg" bindtap="up" />
+        <image mode="aspectFit" class="{{vanImage}}" src="{{wallimg}}" bindtap="up" bindlongtap="changewallimg" />
     </view>
-    <van-overlay show="{{ overlayshow }}" >
-        <van-image bindtap="closeHide"  style="position: absolute;top:5vh;left:5vw;z-index: 1000;" fit='cover' round width="90vw" height="50vh" src="{{userInfo.avatar||'https://img.yzcdn.cn/vant/cat.jpeg'}}" />
+    <van-overlay show="{{ overlayshow }}">
+        <van-image bindtap="closeHide" style="position: absolute;top:5vh;left:5vw;z-index: 1000;" fit='cover' round width="90vw" height="50vh" src="{{userInfo.avatar||'https://img.yzcdn.cn/vant/cat.jpeg'}}" />
     </van-overlay>
     <view class="mythbox">
         <view class="mythcontainer">
             <van-image fit='cover' bindlongpress="changeimage" bindtap="onClickHide" round width="5rem" height="5rem" src="{{userInfo.avatar||'https://img.yzcdn.cn/vant/cat.jpeg'}}" />
-            <text class="name" bindtap="Show" >{{userInfo.nickName}}</text>
+            <text class="name" bindtap="Show">{{userInfo.nickName}}</text>
         </view>
     </view>
     <van-dialog use-slot title="是否更换头像" show="{{ ifchangeimage }}" show-cancel-button zIndex='1000' bind:confirm='changeimage1'>
     </van-dialog>
+    <view style="text-align: center;margin-bottom: 1rem;">
+        身体极值信息
+    </view>
+    <view class="statusBox">
+
+        <view class="statusCeil">
+            <view style="color:red">
+                项目
+            </view>
+            <view>
+                BMI
+            </view>
+            <view>
+                体脂率(%)
+            </view>
+            <view>
+                体重(kg)
+            </view>
+            <view>
+                身体状态
+            </view>
+        </view>
+        <view class="statusCeil">
+            <view style="color:red">
+                极大值
+            </view>
+            <view wx:for="{{MAXMINdata}}" wx:for-item="item1">
+                {{item1[0]}}
+            </view>
+        </view>
+        <view class="statusCeil">
+            <view style="color:red">
+                极小值
+            </view>
+            <view wx:for="{{MAXMINdata}}" wx:for-item="item1">
+                {{item1[1]}}
+            </view>
+        </view>
+    </view>
     <button class="first" bindtap="closeInfo">身体数据</button>
     <button bindtap="showtianjiashuju">添加数据</button>
     <van-dialog use-slot title="添加数据" show="{{ putdatashow }}" show-cancel-button bind:confirm='putdata'>
@@ -44,7 +85,7 @@
     <button class="first" bindtap="closeEmail">更改邮箱</button>
     <van-dialog use-slot title="修改邮箱" show="{{ showEmail }}" show-cancel-button bind:confirm="putEmail" zIndex='1000'>
         <view class="second">
-            <input id='account' placeholder="邮箱" placeholder-class="plas" type="text" class="inputs" model:value="{{oldemail}}" />
+            <input disabled="disabled" id='account' placeholder="邮箱" placeholder-class="plas" type="text" class="inputs" model:value="{{userInfo.email}}" />
             <button class='button' bindtap="onGetCode">{{trip}}</button>
         </view>
         <view class="second">

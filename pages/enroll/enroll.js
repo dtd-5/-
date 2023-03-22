@@ -72,7 +72,7 @@ Page({
                 wx.redirectTo({
                     url: '../login/login',
                   })
-            },5000)
+            },1000)
 
         })
     },

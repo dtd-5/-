@@ -2,11 +2,11 @@
 <view >
     <van-grid column-num="2" style="width: 100%;">
         <van-grid-item  use-slot wx:for="{{ data }}" bindtap="bindViewTap" data-id='{{item.id}}'>
-            <image mode="aspectFit" style="height: 8rem;" src="item.frontCover" />
+            <image mode="aspectFit" style="height: 8rem;" src="{{item.frontCover}}" />
             <view class="text">
               {{item.title}}
             </view>
-            <view class="text">
+            <view class="text" style='color: red;'>
                 {{item.type=="REALTIME_INFO"?'时事资讯':'乒乓技巧'}}
             </view>
         </van-grid-item>

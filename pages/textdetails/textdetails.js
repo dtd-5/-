@@ -22,7 +22,8 @@ Page({
         get('/home/information/detail', {id:options.id}, {
             token: wx.getStorageSync('token')
         }).then(res => {
-            let result = app.towxml(res.data.text, 'markdown', {
+            let text=res.data.text
+            let result = app.towxml(text, 'markdown', {
                 base: '', // 相对资源的base路径
                 theme: 'light', // 主题，默认`light`
                 events: { // 为元素绑定的事件方法
